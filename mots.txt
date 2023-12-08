@@ -1,0 +1,15 @@
+python
+programme
+informatique
+developpement
+algorithme
+interface
+téléphone
+ordinateur
+application
+variable
+boucle
+condition
+langage
+fenetre
+banane
