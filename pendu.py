@@ -66,6 +66,7 @@ def insert_word():
     input_rect = pygame.Rect((W - input_width) // 2, (H - input_height) // 2, input_width, input_height)
     user_input = ""
     input_active = True
+    message_add = None
 
     while True:
         for event in pygame.event.get():
@@ -77,8 +78,9 @@ def insert_word():
                     if user_input.strip():
                         with open("mots.txt", "a") as file:
                             file.write(user_input + "\n")
-                            print(f"Le mot '{user_input}' a été ajouté à la liste")
-                            user_input = ""
+                        message_add = pygame.font.Font(None, 36).render(f"Le mot '{user_input}' a été ajouté à la liste", True, (50, 50, 255))
+                        message_add_rect = message_add.get_rect(center=(W // 2, 180))
+                        user_input = ""
                 elif event.key == pygame.K_BACKSPACE:
                     user_input = user_input[:-1]
                 else:
@@ -100,7 +102,7 @@ def insert_word():
         Fenetre.blit(input_surface, (input_surface_rect.x + 5, input_surface_rect.y))
 
         save_text = pygame.font.Font(None, 36).render("Enregistrer le mot", True, (0, 0, 0))
-        save_button_rect = pygame.Rect(W // 2 - 125 , (H - input_height) // 2 + 50, 250, 40)
+        save_button_rect = pygame.Rect(W // 2 - 125, (H - input_height) // 2 + 50, 250, 40)
 
         if save_button_rect.collidepoint(pygame.mouse.get_pos()):
             pygame.draw.rect(Fenetre, (0, 169, 247), save_button_rect)
@@ -111,7 +113,7 @@ def insert_word():
         Fenetre.blit(save_text, save_text_rect)
 
         back_text = pygame.font.Font(None, 36).render("Retour au Menu", True, (0, 0, 0))
-        back_button_rect = pygame.Rect(W // 2 - 125, H  // 2 +220, 250, 40)
+        back_button_rect = pygame.Rect(W // 2 - 125, H // 2 + 220, 250, 40)
         back_text_rect = back_text.get_rect(center=back_button_rect.center)
 
         if back_button_rect.collidepoint(pygame.mouse.get_pos()):
@@ -122,15 +124,20 @@ def insert_word():
         Fenetre.blit(back_text, back_text_rect)
 
         if save_button_rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
-            if user_input.strip():  
+            if user_input.strip():
                 with open("mots.txt", "a") as file:
                     file.write(user_input + "\n")
-                    print(f"Le mot '{user_input}' a été ajouté à la liste")
-                    user_input = ""
+                message_add = pygame.font.Font(None, 36).render(f"Le mot '{user_input}' a été ajouté à la liste", True, (255, 0, 0))
+                message_add_rect = message_add.get_rect(center=(W // 2, 100))
+                user_input = ""
         elif back_button_rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
             return "back"
 
+        if message_add:
+            Fenetre.blit(message_add, message_add_rect)
+
         pygame.display.flip()
+
 def mots_alea():
     global solution
     with open("mots.txt", "r") as file:
@@ -179,18 +186,18 @@ def play():
                                 show_message = True
                                 message_echec = pygame.font.Font(None, 36).render("Vous avez atteint le nombre maximum d'essais.", True, (255, 0, 0))
                                 solution_echec = pygame.font.Font(None, 32).render(f"Le mot était {solution}", True, (255, 0, 0))
-                                message_echec_rect = message_echec.get_rect(center=(W // 2, 150))
-                                solution_echec_rect = solution_echec.get_rect(center=(W // 2, 180))
+                                message_echec_rect = message_echec.get_rect(center=(W // 2, 100))
+                                solution_echec_rect = solution_echec.get_rect(center=(W // 2, 140))
                                 break
 
         Fenetre.fill((255, 255, 255))
 
         mauvaises_lettres_text = pygame.font.Font(None, 36).render(f"Tentatives : {attempts}/7", True, (255, 0, 0))
-        Fenetre.blit(mauvaises_lettres_text, (50, 100))
+        Fenetre.blit(mauvaises_lettres_text, (50, 150))
 
         for i, lettre in enumerate(mauvaises_lettres):
-            lettre_text = pygame.font.Font(None, 36).render(lettre, True, (255, 0, 0))
-            Fenetre.blit(lettre_text, (50, 180 + i * 40))
+            lettre_text = pygame.font.Font(None, 50).render(lettre, True, (255, 0, 0))
+            Fenetre.blit(lettre_text, (100, 200 + i * 45))
 
         game_title = pygame.font.Font(None, 36).render("Le Pendu", True, (0, 0, 0))
         game_title_rect = game_title.get_rect(center=(W // 2, 50))
