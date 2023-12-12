@@ -16,13 +16,13 @@ def main_menu():
 
         Fenetre.fill((255, 255, 255))
 
-        text = pygame.font.Font(None, 36).render("Jeu du Pendu", True, (0, 0, 0))
-        text_rect = text.get_rect(center=(W // 2, H // 4))
+        text = pygame.font.Font(None, 80).render("Jeu du Pendu", True, (0, 0, 0))
+        text_rect = text.get_rect(center=(W // 2, 55))
         Fenetre.blit(text, text_rect)
 
-        play_text = pygame.font.Font(None, 36).render("Jouer", True, (0, 0, 0))
-        play_rect = play_text.get_rect(center=(W // 2, H // 2 - 50))
-        play_button_rect = pygame.Rect(W // 2- 150, play_rect.top - 10, 300, play_rect.height + 20)
+        play_text = pygame.font.SysFont(None, 50, italic=True).render("Jouer", True, (0, 0, 0))
+        play_rect = play_text.get_rect(center=(W // 2, H // 2 -100))
+        play_button_rect = pygame.Rect(W // 2- 150, play_rect.top - 25, 300, 80)
 
         if play_button_rect.collidepoint(pygame.mouse.get_pos()):
             pygame.draw.rect(Fenetre, (0, 169, 247), play_button_rect)
@@ -31,9 +31,9 @@ def main_menu():
 
         Fenetre.blit(play_text, play_rect)
 
-        insert_text = pygame.font.Font(None, 36).render("Insérer un mot", True, (0, 0, 0))
-        insert_rect = insert_text.get_rect(center=(W // 2, H // 2 + 30))  
-        insert_button_rect = pygame.Rect(W // 2 - 150, insert_rect.top - 10, 300, insert_rect.height + 20)
+        insert_text = pygame.font.SysFont(None, 50, italic=True).render("Insérer un mot", True, (0, 0, 0))
+        insert_rect = insert_text.get_rect(center=(W // 2, H // 2 + 20))  
+        insert_button_rect = pygame.Rect(W // 2 - 150, insert_rect.top - 25, 300, 80)
 
         if insert_button_rect.collidepoint(pygame.mouse.get_pos()):
             pygame.draw.rect(Fenetre, (0, 169, 247), insert_button_rect)
@@ -42,9 +42,9 @@ def main_menu():
 
         Fenetre.blit(insert_text, insert_rect)
 
-        score_text = pygame.font.Font(None, 36).render("Score", True, (0, 0, 0))
-        score_rect = play_text.get_rect(center=(W // 2, H // 2 + 100))
-        score_button_rect = pygame.Rect(W // 2- 150, score_rect.top - 10, 300, score_rect.height + 20)
+        score_text = pygame.font.SysFont(None, 50, italic=True).render("Score", True, (0, 0, 0))
+        score_rect = play_text.get_rect(center=(W // 2, H // 2 + 140))
+        score_button_rect = pygame.Rect(W // 2- 150, score_rect.top - 25, 300, 80)
 
         if score_button_rect.collidepoint(pygame.mouse.get_pos()):
             pygame.draw.rect(Fenetre, (0, 169, 247), score_button_rect)
@@ -69,8 +69,8 @@ def main_menu():
         pygame.display.flip()
 
 def username():
-    input_rect = pygame.Rect((W - 300) // 2, (H - 36) // 2, 300, 36)
-    font = pygame.font.Font(None, 36)
+    input_rect = pygame.Rect(W // 2 - 200, H // 2, 400, 80)
+    font = pygame.font.Font(None, 60)
     user_input = ""
     input_active = True
 
@@ -88,7 +88,7 @@ def username():
 
         Fenetre.fill((255, 255, 255))
 
-        text = font.render("Qui qui joue ?", True, (0, 0, 0))
+        text = pygame.font.SysFont(None, 80, italic=True).render("Entrer votre nom", True, (0, 0, 0))
         text_rect = text.get_rect(center=(W // 2, H // 3))
         Fenetre.blit(text, text_rect)
 
@@ -108,16 +108,16 @@ def difficulte():
         Fenetre.fill((255, 255, 255))
 
         easy_text = pygame.font.Font(None, 36).render("Facile", True, (0, 0, 0))
-        easy_rect = easy_text.get_rect(center=(100, H // 2 -100))
-        easy_button_rect = pygame.Rect(50, easy_rect.top - 10, 300, easy_rect.height + 20)
+        easy_rect = easy_text.get_rect(center=(200, H // 2 -100))
+        easy_button_rect = pygame.Rect(50, easy_rect.top - 25, 300, 80)
 
         medium_text = pygame.font.Font(None, 36).render("Moyen", True, (0, 0, 0))
-        medium_rect = medium_text.get_rect(center=(100, H // 2 ))
-        medium_button_rect = pygame.Rect(50, medium_rect.top - 10, 300, medium_rect.height + 20)
+        medium_rect = medium_text.get_rect(center=(200, H // 2 ))
+        medium_button_rect = pygame.Rect(50, medium_rect.top - 25, 300, 80)
 
         hard_text = pygame.font.Font(None, 36).render("Difficile", True, (0, 0, 0))
-        hard_rect = hard_text.get_rect(center=(100, H // 2 + 100))
-        hard_button_rect = pygame.Rect(50, hard_rect.top - 10, 300, hard_rect.height + 20)
+        hard_rect = hard_text.get_rect(center=(200, H // 2 + 100))
+        hard_button_rect = pygame.Rect(50, hard_rect.top - 25, 300, 80)
 
         if easy_button_rect.collidepoint(pygame.mouse.get_pos()):
             pygame.draw.rect(Fenetre, (0, 169, 247), easy_button_rect)
@@ -144,6 +144,16 @@ def difficulte():
             return "moyen"
         elif hard_button_rect.collidepoint(pygame.mouse.get_pos()) and pygame.mouse.get_pressed()[0]:
             return "difficile"
+        
+        choisir = pygame.font.Font(None, 60).render("Choisir le niveau", True, (0, 0, 0))
+        choisir_rect = choisir.get_rect(center=(W // 2 + 180, H//2 - 30))
+
+        niveau = pygame.font.Font(None, 60).render("de difficulté", True, (0, 0, 0))
+        niveau_rect = niveau.get_rect(center=(W // 2 + 180, H//2 + 30))
+
+        Fenetre.blit(choisir, choisir_rect)
+        Fenetre.blit(niveau, niveau_rect)
+
         
         pygame.display.flip()
 
@@ -266,7 +276,7 @@ def play(player_name, difficulty):
 
         Fenetre.fill((255, 255, 255))
 
-        mauvaises_lettres_text = pygame.font.Font(None, 36).render(f"Tentatives : {attempts}/7", True, (255, 0, 0))
+        mauvaises_lettres_text = pygame.font.Font(None, 36, ).render(f"Tentatives : {attempts}/7", True, (255, 0, 0))
         Fenetre.blit(mauvaises_lettres_text, (50, 150))
 
         for i, lettre in enumerate(mauvaises_lettres):
@@ -298,6 +308,7 @@ def play(player_name, difficulty):
         if attempts < len(pendu_images):
             pendu_image = pygame.image.load(pendu_images[attempts])
             Fenetre.blit(pendu_image, (W // 2 - pendu_image.get_width() // 2, 225))
+
         if '_' not in guessed_letters:
             win_img = pygame.image.load("img/9.png")
             Fenetre.blit(win_img, (W // 2 - win_img.get_width() // 2, 225))
@@ -305,6 +316,7 @@ def play(player_name, difficulty):
             message_gagne_rect = message_gagne.get_rect(center=(W // 2, 100))
             Fenetre.blit(message_gagne, message_gagne_rect)
             pygame.display.flip()
+
         if '_' not in guessed_letters and player_score == 0:
             player_score += 1
             update_scores(player_name, player_score)
@@ -320,8 +332,6 @@ def play(player_name, difficulty):
 
         pygame.display.flip()
     
-
-
 def load_scores():
     scores = []
     try:
@@ -338,7 +348,7 @@ def load_scores():
 
 def score():
     scores = load_scores()
-
+    scores = sorted(scores, key=lambda x: x[1], reverse=True)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -361,13 +371,13 @@ def score():
 
         Fenetre.blit(back_text, back_text_rect)
 
-        text = pygame.font.Font(None, 36).render("Scores", True, (0, 0, 0))
-        text_rect = text.get_rect(center=(W // 2, H // 4))
+        text = pygame.font.Font(None, 80).render("Tableau des scores", True, (0, 0, 0))
+        text_rect = text.get_rect(center=(W // 2, 55))
         Fenetre.blit(text, text_rect)
 
-        y_position = H // 4 + 50
+        y_position = H // 4
         for name, score in scores:
-            score_text = pygame.font.Font(None, 28).render(f"{name}: {score}", True, (0, 0, 0))
+            score_text = pygame.font.Font(None, 38).render(f"{name}: {score}", True, (0, 0, 0))
             score_rect = score_text.get_rect(center=(W // 2, y_position))
             Fenetre.blit(score_text, score_rect)
             y_position += 30

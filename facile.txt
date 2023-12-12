@@ -3,3 +3,13 @@ soleil
 arbre
 fleur
 maison
+oiseau
+rire
+livre
+montagne
+rivière
+nuage
+plage
+étoile
+pomme
+voiture
