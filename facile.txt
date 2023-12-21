@@ -7,9 +7,9 @@ oiseau
 rire
 livre
 montagne
-rivière
+riviere
 nuage
 plage
-étoile
+etoile
 pomme
 voiture
