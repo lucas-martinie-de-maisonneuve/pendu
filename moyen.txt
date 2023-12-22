@@ -12,6 +12,5 @@ voiture
 geographie
 kangourou
 heron
-chocolatpipi
-caca
+chocolat
 jolie
